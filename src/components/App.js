@@ -9,8 +9,19 @@ const App = () => {
  
   return (
     <div id="main">
-      <AddTodo />
-     {/* Render list of Todo Components here */}
+      <AddTodo />                                                             
+    add={text => dispatch({type: "add", text: text})}
+    />
+    {state.todos.map(t => (
+      <Todo
+        key={t.id}
+        todo={t}
+        remove={() => dispatch({type: "remove", id: t.id})}
+        edit={text => dispatch({type: "edit", id: t.id, text: text})}
+      />
+    ))}
+  </>);
+ {/* Render list of Todo Components here */}
     </div>
   )
 }
